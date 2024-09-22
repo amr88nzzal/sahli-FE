@@ -8,25 +8,21 @@ export const LoginContext = React.createContext();
 export default function LoginProvider(props) {
   const [LoggedIn, setLoggedIn] = useState(false);
   const [user, setUser] = useState({ username: "" });
-  //const [api, setApi] = useState({ ip: "192.168.0.73", port: 10105, apiKey: "r0cc266dc5544bfd9232b27ebdfcc7fd" });
-  const api = {
-    ip: "",
-    port: 10105,
-    apiKey: "",
-  };
   //const [loginInfo, setLoginInfo] = useState({});
-  const loginFunction = async (username, password) => {
+  const loginFunction = async (username, password, ip, port, apiKey) => {
     console.log("------Login Function------>>", username, password);
-    console.log("------URL Login ------>>", `${api.ip}:${api.port}/login/`);
+    const encodedCredentials = utf8ToB64(`${username}:${password}`);
+    console.log("------user+pass encoded ------>>", encodedCredentials);
+    console.log("------URL Login ------>>", `${ip}:${port}/login/`, apiKey);
     try {
       const response = await superagent
-        .get(`${api.ip}:${api.port}/login/`)
-        .auth(`${username}`, `${password}`)
-        //.set("User-Agent", "{{useragent}}")
+        .get(`${ip}:${port}/login/`)
+        .set("Authorization", `Basic ${encodedCredentials}`)
+        // .set("User-Agent", "{{useragent}}")
         .set("Accept", "application/json")
-        .set("x-api-key", `${api.apiKey}`);
+        .set("x-api-key", `${apiKey}`);
       console.log("------Login Function------>>", response.body);
-      //cookie.save("x-session-id", response.body.session_id); // save session id
+      cookie.save("x-session-id", response.body.session_id); // save session id
     } catch (err) {
       console.log("------Login Function (Error)------>>", err);
     }
@@ -68,6 +64,10 @@ export default function LoginProvider(props) {
     logoutFunction: logoutFunction,
     user: user,
   };
+  function utf8ToB64(str) {
+    return window.btoa(unescape(encodeURIComponent(str)));
+  }
+
   return (
     <LoginContext.Provider value={state}>
       {props.children}

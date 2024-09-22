@@ -2,7 +2,7 @@
   "name": "sahli-fe",
   "version": "0.1.0",
   "private": true,
-  "proxy": "http://localhost:10105",
+  "proxy": "http://16.24.101.161:10105",
   "dependencies": {
     "@blueprintjs/core": "^5.13.0",
     "@chakra-ui/icons": "^2.1.1",

@@ -9,34 +9,62 @@ import {
   Input,
   Checkbox,
   Stack,
-  Link,
   Button,
   Heading,
-  Text,
   useColorModeValue,
 } from "@chakra-ui/react";
-// import axios from 'axios';
 
 export default function SimpleCard() {
   const LogInContext = useContext(LoginContext);
   const [name, setName] = useState({ userName: "" });
   const [password, setPassword] = useState({ password: "" });
+  const [ipAddress, setIpAddress] = useState({
+    ip: "",
+    port: 10105,
+    apiKey: "",
+  });
 
   const handleUser = (e) => {
     setName({ userName: e.target.value });
-    console.log("userName: ",name.userName);
+    console.log("userName: ", name.userName);
   };
 
   const handlePassword = (e) => {
     setPassword({ password: e.target.value });
-    console.log("password: " , password.password);
+    console.log("password: ", password.password);
+  };
+  const handleIpAddress = (e) => {
+    setIpAddress((ipAddress) => ({
+      ...ipAddress,
+      ip: e.target.value,
+    }));
+    console.log("Ip Address : ", ipAddress);
+  };
+  const handlePort = (e) => {
+    setIpAddress((ipAddress) => ({
+      ...ipAddress,
+      port: e.target.value,
+    }));
+    console.log("Ip Address : ", ipAddress);
+  };
+  const handleApiKey = (e) => {
+    setIpAddress((ipAddress) => ({
+      ...ipAddress,
+      apiKey: e.target.value,
+    }));
+    console.log("Ip Address : ", ipAddress);
   };
 
   const handleSubmit = (e) => {
     e.preventDefault(); //not to refresh the page
-    console.log(name.userName,"ok >>>>",password.password);
-    LogInContext.loginFunction(name.userName, password.password);
-    
+    console.log(name.userName, "ok >>>>", password.password);
+    LogInContext.loginFunction(
+      name.userName,
+      password.password,
+      ipAddress.ip,
+      ipAddress.port,
+      ipAddress.apiKey
+    );
   };
   return (
     <Flex
@@ -56,14 +84,26 @@ export default function SimpleCard() {
           p={8}
         >
           <Form onSubmit={handleSubmit}>
-            <Stack spacing={4}>
-              <FormControl id="email" onChange={handleUser}>
+            <Stack spacing={5}>
+              <FormControl id="email"  onChange={handleUser}>
                 <FormLabel>User Name</FormLabel>
-                <Input type="text" />
+                <Input type="text" width="300px"/>
               </FormControl>
               <FormControl id="password" onChange={handlePassword}>
                 <FormLabel>Password</FormLabel>
-                <Input type="password" />
+                <Input type="password" width="300px" />
+              </FormControl>
+              <FormControl id="ipAddress" onChange={handleIpAddress}>
+                <FormLabel>IP Address</FormLabel>
+                <Input type="text" width="300px"/>
+              </FormControl>
+              <FormControl id="port" onChange={handlePort}>
+                <FormLabel>Port Number</FormLabel>
+                <Input type="text" width="300px"/>
+              </FormControl>
+              <FormControl id="apiKey" onChange={handleApiKey}>
+                <FormLabel>API Key</FormLabel>
+                <Input type="text" width="300px"/>
               </FormControl>
               <Stack spacing={10}>
                 <Stack
@@ -83,7 +123,6 @@ export default function SimpleCard() {
                 >
                   Sign in
                 </Button>
-
               </Stack>
             </Stack>
           </Form>
