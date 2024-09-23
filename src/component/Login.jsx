@@ -1,7 +1,7 @@
 import React, { useContext, useState } from "react";
 import { LoginContext } from "./context/context";
 import { Form } from "react-bootstrap";
-import SahliPhoto from '../asset/sahlisoft.png'
+import SahliPhoto from "../asset/sahlisoft.png";
 import {
   Flex,
   Box,
@@ -69,80 +69,79 @@ export default function SimpleCard() {
   };
   return (
     <Flex minH="100vh" direction={{ base: "column", lg: "row" }}>
-  {/* القسم الخاص بالصورة */}
-  <Flex
-    flex={1}
-    display={{ base: "none", lg: "flex" }} // الصورة تختفي عند الشاشات أقل من 900px
-    bgImage={`url(${SahliPhoto})`} // الصورة الأساسية
-    bgSize="cover"
-    bgPosition="center"
-  >
-    {/* محتوى إضافي يمكن إضافته هنا إذا لزم */}
-  </Flex>
-
-  {/* القسم الخاص بالنموذج */}
-  <Flex
-    flex={1}
-    align="center"
-    justify="center"
-    bg={useColorModeValue("gray.50", "gray.800")}
-    bgImage={{ base: `url(${SahliPhoto})`, sm: "none" }} // الصورة الثانية تظهر كخلفية فقط في الشاشات الصغيرة
-    bgSize="cover"
-    bgPosition="center"
-    bgRepeat="no-repeat"
-  >
-    <Stack spacing={8} mx="auto" maxW="lg" py={12} px={6} w="full">
-      <Stack align="center">
-        <Heading fontSize="4xl">Sign in to your account</Heading>
-      </Stack>
-      <Box
-        rounded="lg"
-        bg={useColorModeValue("white", "gray.700")}
-        boxShadow="lg"
-        p={8}
-        w="full"
+      {/* القسم الخاص بالصورة */}
+      <Flex
+        flex={1}
+        display={{ base: "none", lg: "flex" }} // الصورة تختفي عند الشاشات أقل من 900px
+        bgImage={`url(${SahliPhoto})`} // الصورة الأساسية
+        bgSize="cover"
+        bgPosition="center"
       >
-        <form onSubmit={handleSubmit}>
-          <Stack spacing={5}>
-            <FormControl id="userName" onChange={handleUser}>
-              <FormLabel>User Name</FormLabel>
-              <Input type="text" width="100%" />
-            </FormControl>
-            <FormControl id="password" onChange={handlePassword}>
-              <FormLabel>Password</FormLabel>
-              <Input type="password" width="100%" />
-            </FormControl>
-            <FormControl id="ipAddress" onChange={handleIpAddress}>
-              <FormLabel>IP Address</FormLabel>
-              <Input type="text" width="100%" />
-            </FormControl>
-            <FormControl id="port" onChange={handlePort}>
-              <FormLabel>Port Number</FormLabel>
-              <Input type="text" width="100%" />
-            </FormControl>
-            <FormControl id="apiKey" onChange={handleApiKey}>
-              <FormLabel>API Key</FormLabel>
-              <Input type="text" width="100%" />
-            </FormControl>
-            <Stack spacing={10}>
-              <Checkbox>Remember me</Checkbox>
-              <Button
-                bg="blue.400"
-                color="black"
-                _hover={{
-                  bg: "blue.500",
-                }}
-                type="submit"
-              >
-                Sign in
-              </Button>
-            </Stack>
+        {/* محتوى إضافي يمكن إضافته هنا إذا لزم */}
+      </Flex>
+
+      {/* القسم الخاص بالنموذج */}
+      <Flex
+        flex={1}
+        align="center"
+        justify="center"
+        bg={useColorModeValue("gray.50", "gray.800")}
+        bgImage={{ base: `url(${SahliPhoto})`, sm: "none" }} // الصورة الثانية تظهر كخلفية فقط في الشاشات الصغيرة
+        bgSize="cover"
+        bgPosition="center"
+        bgRepeat="no-repeat"
+      >
+        <Stack spacing={8} mx="auto" maxW="lg" py={12} px={6} w="full">
+          <Stack align="center">
+            <Heading fontSize="4xl">Sign in to your account</Heading>
           </Stack>
-        </form>
-      </Box>
-    </Stack>
-  </Flex>
-</Flex>
-  
+          <Box
+            rounded="lg"
+            bg={useColorModeValue("white", "gray.700")}
+            boxShadow="lg"
+            p={8}
+            w="full"
+          >
+            <form onSubmit={handleSubmit}>
+              <Stack spacing={5}>
+                <FormControl id="userName" onChange={handleUser}>
+                  <FormLabel>User Name</FormLabel>
+                  <Input type="text" width="100%" />
+                </FormControl>
+                <FormControl id="password" onChange={handlePassword}>
+                  <FormLabel>Password</FormLabel>
+                  <Input type="password" width="100%" />
+                </FormControl>
+                <FormControl id="ipAddress" onChange={handleIpAddress}>
+                  <FormLabel>IP Address</FormLabel>
+                  <Input type="text" width="100%" />
+                </FormControl>
+                <FormControl id="port" onChange={handlePort}>
+                  <FormLabel>Port Number</FormLabel>
+                  <Input type="text" width="100%" />
+                </FormControl>
+                <FormControl id="apiKey" onChange={handleApiKey}>
+                  <FormLabel>API Key</FormLabel>
+                  <Input type="text" width="100%" />
+                </FormControl>
+                <Stack spacing={10}>
+                  <Checkbox>Remember me</Checkbox>
+                  <Button
+                    bg="blue.400"
+                    color="black"
+                    _hover={{
+                      bg: "blue.500",
+                    }}
+                    type="submit"
+                  >
+                    Login
+                  </Button>
+                </Stack>
+              </Stack>
+            </form>
+          </Box>
+        </Stack>
+      </Flex>
+    </Flex>
   );
 }
