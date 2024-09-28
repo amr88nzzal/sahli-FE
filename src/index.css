@@ -12,7 +12,7 @@ body,
 .app{
   display: flex;
   position: relative;
-  flex-direction: column;
+  /* flex-direction: column; */
 }
 
 ::-webkit-scrollbar{
@@ -23,9 +23,9 @@ body,
   background: #e0e0e0;
 }
 ::-webkit-scrollbar-thumb{
-background: #b1b1b1;
+background: #888;
 }
 
 ::-webkit-scrollbar-thumb:hover{
-background: #a1a1a1;
+background: #555;
 }
