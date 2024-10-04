@@ -1,5 +1,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@400;600;700&display=swap");
-
+/* *{
+  border: 0.05mm solid rgba(243, 138, 138, 0.6);
+} */
 html,
 body,
 #root,
